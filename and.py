@@ -1,5 +1,5 @@
 from utils.model import perceptron
-from utils.all_utils import prepare_data
+from utils.all_utils import prepare_data, save_model, save_plot
 import pandas as pd
 AND = {
     "x1" : [0,0,1,1],
