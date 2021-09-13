@@ -19,3 +19,6 @@ model = perceptron(eta=eta,epochs=epochs)
 model.fit(x,y)
 
 _ = model.totalloss()
+
+save_model(model,filename="and.model")
+save_plot(df,"and.png",model)
