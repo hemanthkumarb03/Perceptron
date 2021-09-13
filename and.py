@@ -1,24 +1,28 @@
 from utils.model import perceptron
 from utils.all_utils import prepare_data, save_model, save_plot
 import pandas as pd
-AND = {
-    "x1" : [0,0,1,1],
-    "x2" : [0,1,0,1],
-    "y" : [0,0,0,1],
-}
+def main(data,eta, epochs,filename):
+    
+    df= pd.DataFrame(data)
 
-df= pd.DataFrame(AND)
+    x,y = prepare_data(df)
 
-x,y = prepare_data(df)
+    model = perceptron(eta=eta,epochs=epochs)
+    model.fit(x,y)
 
-eta = 0.1
+    _ = model.totalloss()
 
-epochs=10
+    save_model(model,filename)
+    save_plot(df,"and.png",model)
 
-model = perceptron(eta=eta,epochs=epochs)
-model.fit(x,y)
+if __name__ == '__main__':
 
-_ = model.totalloss()
-
-save_model(model,filename="and.model")
-save_plot(df,"and.png",model)
+    AND = {
+        "x1" : [0,0,1,1],
+        "x2" : [0,1,0,1],
+        "y" : [0,0,0,1],
+    }
+    
+    eta = 0.1
+    epochs=10
+    main(data=AND,eta=eta,epochs=epochs,filename="and.model")
